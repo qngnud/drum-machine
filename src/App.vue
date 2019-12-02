@@ -1,60 +1,36 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+    <v-app>
+        <h1 class="mx-auto">Drum Machine</h1>
+        <v-content class="mx-auto mt-5">
+            <v-flex class="d-flex flex-row mx-auto">
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+            <bank-one v-if="sharedState.bank === true"/>
+            <bank-two v-if="sharedState.bank === false"/>
+            <Menu/>
+            </v-flex>
 
-      <v-spacer></v-spacer>
+        </v-content>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-content>
-      <HelloWorld/>
-    </v-content>
-  </v-app>
+    </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+    import bankOne from "./components/BankOne";
+    import BankTwo from "./components/BankTwo";
+    import Menu from "./components/Menu";
+    import {store} from "./store";
 
-export default {
-  name: 'App',
-
-  components: {
-    HelloWorld,
-  },
-
-  data: () => ({
-    //
-  }),
-};
+    export default {
+        name: 'App',
+        data() {
+            return {
+                sharedState: store.state
+            }
+        },
+        components: {
+            Menu,
+            BankTwo,
+            bankOne
+        },
+    };
 </script>
